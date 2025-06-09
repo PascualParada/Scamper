@@ -88,7 +88,17 @@ Describe tu problema o desafío creativo y yo aplicaré todas las técnicas SCAM
         return UserInput(problem=problem, context=context)
     
     def _display_results(self, response: ScamperResponse):
-        """Muestra los resultados de forma organizada y atractiva"""
+        """
+        Muestra los resultados de forma organizada y atractiva.
+
+        **NOTA IMPORTANTE PARA DESARROLLADORES DE GUI:**
+        Este método está diseñado EXCLUSIVAMENTE para la salida en la interfaz de
+        línea de comandos (CLI) utilizando la función `print()`.
+        NO DEBE SER UTILIZADO por una aplicación GUI para mostrar resultados.
+        Las GUIs deben tomar el objeto `ScamperResponse` (preferiblemente obtenido
+        a través de `main.py:get_scamper_ideas_for_gui`) y renderizar los datos
+        utilizando sus propios componentes y lógica de UI.
+        """
         
         print(f"\n🎯 PROBLEMA ANALIZADO:")
         print(f"   {response.original_problem}")
@@ -150,8 +160,19 @@ Describe tu problema o desafío creativo y yo aplicaré todas las técnicas SCAM
     
     async def process_single_problem(self, problem: str, context: Optional[str] = None) -> ScamperResponse:
         """
-        Procesa un problema único sin interfaz interactiva
-        Útil para uso programático
+        Procesa un problema único sin interfaz interactiva.
+
+        Este método es útil para uso programático, por ejemplo, si se integra
+        con una GUI u otro sistema.
+
+        Args:
+            problem: El problema o desafío a analizar.
+            context: Contexto adicional opcional para el problema.
+
+        Returns:
+            Un objeto `ScamperResponse` que contiene los resultados del análisis SCAMPER.
+            El llamador es responsable de manejar la naturaleza asíncrona de esta función
+            (por ejemplo, usando `await` en un contexto `async` o `asyncio.run()`).
         """
         user_input = UserInput(problem=problem, context=context)
         return await orchestrator.process_user_input(user_input)
