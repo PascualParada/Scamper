@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCAMPER - Asistente Creativo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>SCAMPER</h1>
+        <p>Tu Aliado para la Innovación</p>
+    </header>
+
+    <main>
+        <section id="input-section">
+            <h2>Describe tu Desafío</h2>
+            <form id="scamper-form">
+                <div class="form-group">
+                    <label for="problem">Problema o Idea Central:</label>
+                    <textarea id="problem" name="problem" rows="4" placeholder="Ej: ¿Cómo podemos mejorar la experiencia de aprendizaje online?"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="context">Contexto Adicional (Opcional):</label>
+                    <input type="text" id="context" name="context" placeholder="Ej: Para estudiantes universitarios, con bajo presupuesto">
+                </div>
+                <button type="submit" class="cta-button">Generar Ideas SCAMPER</button>
+            </form>
+        </section>
+
+        <section id="results-section" style="display:none;">
+            <h2>Resultados SCAMPER</h2>
+            <div id="loading-indicator" style="display:none;">
+                <p>Analizando y generando ideas... 🚀</p>
+                <div class="spinner"></div>
+            </div>
+            <div id="error-message" class="error-container" style="display:none;">
+                <p>Lo sentimos, ocurrió un error. Por favor, inténtalo de nuevo.</p>
+            </div>
+            <div id="scamper-output">
+                <!-- Los resultados se insertarán aquí -->
+            </div>
+            <div id="summary-section" style="display:none;">
+                <h3>Resumen Ejecutivo</h3>
+                <p id="summary-text"></p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 SCAMPER Multi-Agent System. Interfaz por Jules.</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
